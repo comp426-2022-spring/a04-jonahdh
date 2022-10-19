@@ -1,0 +1,19 @@
+{
+  "name": "a04-jonahdh",
+  "version": "1.0.0",
+  "description": "Implementing middleware and database functions into a03",
+  "main": "server.js",
+  "scripts": {
+    "test": "server.js --port=5000"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/comp426-2022-spring/a04-jonahdh.git"
+  },
+  "author": "jonahdh",
+  "license": "GPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/comp426-2022-spring/a04-jonahdh/issues"
+  },
+  "homepage": "https://github.com/comp426-2022-spring/a04-jonahdh#readme"
+}
