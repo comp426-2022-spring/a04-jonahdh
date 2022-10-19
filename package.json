@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Implementing middleware and database functions into a03",
   "main": "server.js",
+  "type": "module",
   "scripts": {
     "test": "server.js --port=5000"
   },
