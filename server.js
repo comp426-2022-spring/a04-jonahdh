@@ -5,10 +5,11 @@ import { coinFlip, coinFlips, countFlips, flipACoin } from './modules/coin.mjs';
 const args = minimist(process.argv.slice(2));
 
 args['port'];
+args['debug'];
+args['log'];
+args['help'];
 
-const HTTP_PORT = args.port || 5000;
-const app = express();
-
+console.log(args);
 // Help message + routine if --help is flagged
 const help = (`
 server.js [options]
@@ -28,9 +29,12 @@ server.js [options]
 `)
 // If --help or -h, echo help text to STDOUT and exit
 if (args.help || args.h) {
-    console.log(help)
-    process.exit(0)
+    console.log(help);
+    process.exit(0);
 }
+
+const HTTP_PORT = args.port || 5000;
+const app = express();
 
 // Start an app server
 const server = app.listen(HTTP_PORT, () => {
