@@ -61,14 +61,9 @@ app.get('/app/flips/:number/', (req, res) => {
         res.json({raw: flips, summary: countFlips(flips)});
 });
 
-app.get('/app/flip/call/heads/', (req, res) => {
+app.get('/app/flip/call/:call(heads|tails)/', (req, res) => {
         res.statusCode = 200;
-        res.json(flipACoin("heads"))
-});
-
-app.get('/app/flip/call/tails/', (req, res) => {
-    res.statusCode = 200;
-    res.json(flipACoin("tails"))
+        res.json(flipACoin(req.params.call))
 });
 
 app.use(function(req, res){

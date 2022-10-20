@@ -5,7 +5,7 @@
   "main": "server.js",
   "type": "module",
   "scripts": {
-    "test": "server.js --port=5000"
+    "test": "node server.js --port=5000"
   },
   "repository": {
     "type": "git",
