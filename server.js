@@ -1,6 +1,7 @@
 import express from 'express';
 import minimist from 'minimist';
 import { coinFlip, coinFlips, countFlips, flipACoin } from './modules/coin.mjs';
+import db from './modules/database.js';
 
 const args = minimist(process.argv.slice(2));
 

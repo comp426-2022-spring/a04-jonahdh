@@ -1,7 +1,7 @@
 // This ensures that things do not fail silently but will throw errors instead.
 "use strict";
 // Require better-sqlite.
-const Database = require('better-sqlite3');
+import Database from 'better-sqlite3';
 
 // Connect to a database or create one if it doesn't exist yet.
 const db = new Database('user.db');
@@ -30,4 +30,4 @@ if (row === undefined) {
     console.log('Database exists.')
 }
 // Export all of the above as a module so that we can use it elsewhere.
-module.exports = db
+export default db
