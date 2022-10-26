@@ -42,6 +42,25 @@ const server = app.listen(HTTP_PORT, () => {
     console.log('App listening on port %PORT%'.replace('%PORT%',HTTP_PORT))
 });
 
+if (!(args.log == "false")) {
+    app.use((req, res, next) => {
+        let logdata = {
+            remoteaddr: req.ip,
+            remoteuser: req.user,
+            time: Date.now(),
+            method: req.method,
+            url: req.url,
+            protocol: req.protocol,
+            httpversion: req.httpVersion,
+            status: res.statusCode,
+            referer: req.headers['referer'],
+            useragent: req.headers['user-agent']
+        }
+        
+        next();
+    })
+}
+
 app.get('/app/', (req, res) => {
     // Respond with status 200
         res.statusCode = 200;
