@@ -27,7 +27,7 @@ if (row === undefined) {
     console.log('Your database has been initialized with a new table and two entries containing a username and password.');
 } else {
 // Since the database already exists, echo that to the console.
-    console.log('Database exists.')
+    // console.log('Database exists.')
 }
 // Export all of the above as a module so that we can use it elsewhere.
 export default db
