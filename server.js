@@ -61,8 +61,7 @@ if (!(args.log == "false")) {
         }
         const tableHeaders = '(remoteaddr, remoteuser, time, method, url, protocol, httpversion, status, referer, useragent)';
         const tableValues = `(\'${logdata.remoteaddr}\', \'${logdata.remoteuser}\', 
-        \'${logdata.time}\', \'${logdata.method}\', \'${logdata.url}\', \'${logdata.protocol}\', \'${logdata.httpversion}\,
-        \'${logdata.status}\', \'${logdata.referer}\', \'${logdata.useragent}\'')`;
+        \'${logdata.time}\', \'${logdata.method}\', \'${logdata.url}\', \'${logdata.protocol}\', \'${logdata.httpversion}\', \'${logdata.status}\', \'${logdata.referer}\', \'${logdata.useragent}\')`;
         
         var foo = 'INSERT INTO accesslog ' + tableHeaders + ' VALUES ' + tableValues;
         console.log(foo);
