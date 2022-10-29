@@ -42,6 +42,9 @@ const server = app.listen(HTTP_PORT, () => {
     console.log('App listening on port %PORT%'.replace('%PORT%',HTTP_PORT))
 });
 
+// const stmt = db.prepare('INSERT INTO accesslog (remoteaddr) VALUES (\'::1\')');
+// stmt.run();
+
 if (!(args.log == "false")) {
     app.use((req, res, next) => {
         let logdata = {
@@ -56,7 +59,15 @@ if (!(args.log == "false")) {
             referer: req.headers['referer'],
             useragent: req.headers['user-agent']
         }
+        const tableHeaders = '(remoteaddr, remoteuser, time, method, url, protocol, httpversion, status, referer, useragent)';
+        const tableValues = `(\'${logdata.remoteaddr}\', \'${logdata.remoteuser}\', 
+        \'${logdata.time}\', \'${logdata.method}\', \'${logdata.url}\', \'${logdata.protocol}\', \'${logdata.httpversion}\,
+        \'${logdata.status}\', \'${logdata.referer}\', \'${logdata.useragent}\'')`;
         
+        var foo = 'INSERT INTO accesslog ' + tableHeaders + ' VALUES ' + tableValues;
+        console.log(foo);
+        const stmt = db.prepare(foo);
+        stmt.run();
         next();
     })
 }
