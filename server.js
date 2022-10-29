@@ -95,7 +95,9 @@ app.get('/app/flip/call/:call(heads|tails)/', (req, res) => {
 
 if (args.debug) {
     app.get('/app/log/access/', (req, res) => {
-
+        res.statusCode = 200;
+        const stmt = db.prepare((`SELECT * FROM accesslog;`));
+        res.send(stmt.get());
     });
 
     app.get('/app/error/', (req, res) => {
