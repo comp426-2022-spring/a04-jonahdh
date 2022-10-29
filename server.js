@@ -42,9 +42,6 @@ const server = app.listen(HTTP_PORT, () => {
     console.log('App listening on port %PORT%'.replace('%PORT%',HTTP_PORT))
 });
 
-// const stmt = db.prepare('INSERT INTO accesslog (remoteaddr) VALUES (\'::1\')');
-// stmt.run();
-
 if (!(args.log == "false")) {
     app.use((req, res, next) => {
         let logdata = {
@@ -64,7 +61,7 @@ if (!(args.log == "false")) {
         \'${logdata.time}\', \'${logdata.method}\', \'${logdata.url}\', \'${logdata.protocol}\', \'${logdata.httpversion}\', \'${logdata.status}\', \'${logdata.referer}\', \'${logdata.useragent}\')`;
         
         var foo = 'INSERT INTO accesslog ' + tableHeaders + ' VALUES ' + tableValues;
-        console.log(foo);
+
         const stmt = db.prepare(foo);
         stmt.run();
         next();
@@ -95,6 +92,16 @@ app.get('/app/flip/call/:call(heads|tails)/', (req, res) => {
         res.statusCode = 200;
         res.json(flipACoin(req.params.call))
 });
+
+if (args.debug) {
+    app.get('/app/log/access/', (req, res) => {
+
+    });
+
+    app.get('/app/error/', (req, res) => {
+        throw new Error('Error test successful.');
+    });
+}
 
 app.use(function(req, res){
     res.status(404).send('404 NOT FOUND')
