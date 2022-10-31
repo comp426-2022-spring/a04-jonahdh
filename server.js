@@ -1,5 +1,7 @@
 import express from 'express';
 import minimist from 'minimist';
+import morgan from 'morgan';
+import fs from 'fs';
 import { coinFlip, coinFlips, countFlips, flipACoin } from './modules/coin.mjs';
 import db from './modules/database.mjs';
 
@@ -43,6 +45,9 @@ const server = app.listen(HTTP_PORT, () => {
 });
 
 if (!(args.log == "false")) {
+    const WRITESTREAM = fs.createWriteStream('access.log', { flags: 'a' });
+    app.use(morgan('combined', { stream: WRITESTREAM }));
+
     app.use((req, res, next) => {
         let logdata = {
             remoteaddr: req.ip,
