@@ -97,7 +97,7 @@ if (args.debug) {
     app.get('/app/log/access/', (req, res) => {
         res.statusCode = 200;
         const stmt = db.prepare((`SELECT * FROM accesslog;`));
-        res.send(stmt.all());
+        res.json(stmt.all());
     });
 
     app.get('/app/error/', (req, res) => {
